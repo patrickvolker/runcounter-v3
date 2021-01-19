@@ -25,7 +25,7 @@ let datedif = Math.floor(difference/(1000*3600*24));
 
 
 //api FETCH all <is this needed?
-fetch('http://localhost:5000/stats')
+fetch('https://dashboard.jawsdb.com/mysql/dashboard/databites/57118ef4-f901-4154-aefc-ae5e3bf7b7c1')
 .then( (response) => response.json() )
 .then( function(json) {
 // get the value out of the JSON
