@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <title>run stats</title>
+</head>
+<body class="bg-dark text-white">
+    <div class="wrapper text-white">
+        <div class="col-auto d-flex justify-content-center" id="title"><h1 class="mt-4">you're doing great</h1></div><h1 id="bigTotal" class="px-4" align="center"></h1>
+        <hr>
+    </div>
+
+    <div class="col-xl-12 d-flex p-4">
+        <h4 class="mt-4">how far did you run today?</h4>
+        <div class="input-group p-4">
+            <input type="number" class="form-control" placeholder="0" aria-label="userMiles" id="userMiles" min="0">
+            <div class="input-group-append">
+              <button class="btn btn-outline-success" type="button" id="submit"><i class="fas fa-running mx-2" id="icon"></i><div id="message"></div></button>
+            </div>
+          </div>
+    </div>
+    <div class="row d-flex text-white p-4">
+    <div class="col-sm-6"><div id="lastRunDiv" class="collapse">today: <h1 id="lastRun"></h1></div></div>
+    <div class="col-sm-6"><div id="milesRemainingDiv" class="collapse">miles to go: <h1 id="milesRemaining" class="collapse"></h1></div></div>
+    <div class="col-sm-4"><div id="reqDailyAvgDiv" class="collapse">daily average run needed: <h1 id="reqDailyAvg"></h1></div></div></div>
+    </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+<script src="index.js"></script>
+</html>
