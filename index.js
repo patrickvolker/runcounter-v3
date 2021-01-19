@@ -7,6 +7,7 @@ const dbHost = process.env.dbHost;
 const dbUser = process.env.dbUser;
 const dbPassword = process.env.dbPassword;
 const dbHeroku = process.env.dbHeroku;
+const dbPort = process.env.dbPort;
 
 app.use(cors());
 
@@ -15,7 +16,8 @@ const db = mysql.createConnection({
     host: dbHost,
     user: dbUser,
     password: dbPassword,
-    database: dbHeroku
+    database: dbHeroku,
+    port: dbPort
 });
 
 app.use(express.urlencoded({
