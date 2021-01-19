@@ -25,7 +25,7 @@ let datedif = Math.floor(difference/(1000*3600*24));
 
 
 //api FETCH all <is this needed?
-fetch('/')
+fetch('http://localhost:5000/stats')
 .then( (response) => response.json() )
 .then( function(json) {
 // get the value out of the JSON
@@ -39,14 +39,12 @@ let getStats = function(stats){
     console.log(stats);
 };
 getStats(stats);
-//
-
 }
 );
 
 
                 //api FETCH run_total
-fetch('/')
+fetch('http://localhost:5000/stats/run_total')
 .then( (response) => response.json() )
 .then( function(json) {
 // get the value out of the JSON
@@ -62,7 +60,6 @@ let setMilesRemaining = function(runTotal){
     milesRemaining.innerHTML = (2000 - runTotal);
 }
 setMilesRemaining(runTotal.run_total);
-// console.log(runTotal.run_total);
 //set reqDailyAvg
 let setReqDailyAvg = function(runTotal, datedif) {
     let reqDaily = ((2000 - runTotal.run_total) / datedif);
@@ -79,16 +76,13 @@ let month = (date.getMonth() + 1).toString().padStart(2, "0");
 let day = date.getDate().toString();
 let dateString = (year+'-'+ month+'-'+ day);
 
-console.log(dateString);
-
 //NEW RUN function
 const newRun = function() {
 let run_date = dateString;
 let run_length = parseFloat(lastRun.innerHTML);
 let total = parseFloat(bigTotal.innerHTML);
 let newTotal = (run_length + total);
-console.log(newTotal)
-    fetch('/', {
+    fetch('http://localhost:5000/stats', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
