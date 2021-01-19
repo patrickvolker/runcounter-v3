@@ -3,15 +3,19 @@ const express = require('express');
 const mysql =  require('mysql');
 const app = express();
 const cors = require('cors');
+const dbHost = process.env.dbHost;
+const dbUser = process.env.dbUser;
 const dbPassword = process.env.dbPassword;
+const dbHeroku = process.env.dbHeroku;
+
 app.use(cors());
 
 //create connection
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'pat',
+    host: dbHost,
+    user: dbUser,
     password: dbPassword,
-    database: 'runcounter'
+    database: dbHeroku
 });
 
 app.use(express.urlencoded({
