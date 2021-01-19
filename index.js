@@ -17,7 +17,7 @@ const db = mysql.createConnection({
     user: dbUser,
     password: dbPassword,
     database: dbHeroku,
-    port: dbPort
+    port: (dbPort || 5000)
 });
 
 app.use(express.urlencoded({

@@ -25,7 +25,7 @@ let datedif = Math.floor(difference/(1000*3600*24));
 
 
 //api FETCH all <is this needed?
-fetch('https://dashboard.jawsdb.com/mysql/dashboard/databites/57118ef4-f901-4154-aefc-ae5e3bf7b7c1')
+fetch('/')
 .then( (response) => response.json() )
 .then( function(json) {
 // get the value out of the JSON
@@ -46,7 +46,7 @@ getStats(stats);
 
 
                 //api FETCH run_total
-fetch('http://localhost:5000/stats/run_total')
+fetch('/')
 .then( (response) => response.json() )
 .then( function(json) {
 // get the value out of the JSON
@@ -88,7 +88,7 @@ let run_length = parseFloat(lastRun.innerHTML);
 let total = parseFloat(bigTotal.innerHTML);
 let newTotal = (run_length + total);
 console.log(newTotal)
-    fetch('http://localhost:5000/stats', {
+    fetch('/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
