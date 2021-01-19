@@ -10,7 +10,9 @@ const dbHeroku = process.env.dbHeroku;
 const dbPort = process.env.dbPort;
 
 app.use(cors());
-
+if (process.env.JAWSDB_URL){
+    var connection = mysql.createConnection(process.env.JAWSDB_URL)
+} else {
 //create connection
 const db = mysql.createConnection({
     host: dbHost,
@@ -19,6 +21,7 @@ const db = mysql.createConnection({
     database: dbHeroku,
     port: (dbPort || 5000)
 });
+}
 
 app.use(express.urlencoded({
     extended: true
