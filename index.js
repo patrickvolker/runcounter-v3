@@ -12,7 +12,7 @@ const dbPort = process.env.dbPort;
 app.use(cors());
 //jawsdb
 if (process.env.JAWSDB_URL){
-    var connection = mysql.createConnection(process.env.JAWSDB_URL);
+    var db = mysql.createConnection(process.env.JAWSDB_URL);
 }
 //or local connection
 var db = mysql.createConnection({
