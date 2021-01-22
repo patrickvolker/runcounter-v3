@@ -23,7 +23,7 @@ let from_date = new Date('2021/12/31')
 let difference = from_date>today ? from_date-today : today-from_date
 let datedif = Math.floor(difference/(1000*3600*24));
 
-
+//need to learn how to do these routes with jawsDB (http://localhost:5000/stats)
 //api FETCH all <is this needed?
 fetch('http://localhost:5000/stats')
 .then( (response) => response.json() )
@@ -47,6 +47,7 @@ getStats(stats);
 fetch('http://localhost:5000/stats/run_total')
 .then( (response) => response.json() )
 .then( function(json) {
+    console.log(json);
 // get the value out of the JSON
 let runTotal = json[0];
 //push stats into DOM
@@ -93,6 +94,7 @@ let newTotal = (run_length + total);
         run_total: newTotal
         }),
     });
+updateDisplay();
 };
 
 
@@ -104,7 +106,7 @@ const updateDisplay = function() {
     milesRemainingDiv.classList.remove('collapse');
     milesRemaining.classList.remove('collapse');
     reqDailyAvgDiv.classList.remove('collapse');
-    //submit.classList.add('disabled');
+    submit.classList.add('disabled');
 };
 
 //button switcher
