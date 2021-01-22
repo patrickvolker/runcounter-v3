@@ -7,7 +7,7 @@ const dbHost = process.env.dbHost;
 const dbUser = process.env.dbUser;
 const dbPassword = process.env.dbPassword;
 const dbJaws = process.env.dbJaws;
-const dbPort = process.env.dbPort;
+const dbPort = (process.env.dbPort || 5000);
 
 app.use(cors());
 //jawsdb
