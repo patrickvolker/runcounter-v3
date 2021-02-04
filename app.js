@@ -26,7 +26,7 @@ let difference = from_date > today ? from_date - today : today - from_date;
 let datedif = Math.floor(difference / (1000 * 3600 * 24));
 
 //api FETCH all stats
-fetch('http://runcounter-v3.herokuapp.com/stats')
+fetch('https://runcounter-v3.herokuapp.com/stats')
   .then((response) => response.json())
   .then(function (json) {
     // get the value out of the JSON
@@ -42,7 +42,7 @@ fetch('http://runcounter-v3.herokuapp.com/stats')
   });
 
 //api FETCH run_total
-fetch('http://runcounter-v3.herokuapp.com/stats/run_total')
+fetch('https://runcounter-v3.herokuapp.com/stats/run_total')
   .then((response) => response.json())
   .then(function (json) {
     // get the value out of the JSON
@@ -85,7 +85,7 @@ let dateString = year + '-' + month + '-' + day;
 const newRun = function () {
   let run_date = dateString;
   let run_length = parseFloat(lastRun.innerHTML);
-  fetch('http://runcounter-v3.herokuapp.com/stats', {
+  fetch('https://runcounter-v3.herokuapp.com/stats', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

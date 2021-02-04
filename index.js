@@ -11,18 +11,9 @@ const dbPort = process.env.dbPort;
 const PORT = process.env.PORT;
 
 app.use(cors());
-//jawsdb
 if (process.env.JAWSDB_URL) {
   var db = mysql.createConnection(process.env.JAWSDB_URL);
 }
-//or local connection
-// var db = mysql.createConnection({
-//     host: dbHost,
-//     user: dbUser,
-//     password: dbPassword,
-//     database: dbJaws,
-//     port: (dbPort || 5000)
-// });
 
 app.use(
   express.urlencoded({
@@ -31,7 +22,6 @@ app.use(
 );
 app.use(express.json());
 
-//connect
 db.connect((err) => {
   if (err) {
     throw err;
@@ -39,7 +29,6 @@ db.connect((err) => {
   console.log('MySQL connected!');
 });
 
-//need to learn how to do these routes with jawsDB (or just anything) (http://localhost:5000/stats)
 app.get('/stats', (req, res) => {
   const sql = 'SELECT * FROM `stats`';
   db.query(sql, (err, result) => {
@@ -57,10 +46,8 @@ app.get('/stats/run_total', (req, res) => {
 });
 
 app.post('/stats', (req, res) => {
-  //get values from req
   let run_date = req.body.run_date;
   let run_length = req.body.run_length;
-  //plug values into sql
   const sql =
     'INSERT INTO `stats` (run_date, run_length) VALUES ("' +
     run_date +
@@ -78,5 +65,3 @@ app.post('/stats', (req, res) => {
 app.listen(process.env.PORT || process.env.dbPort, () =>
   console.log('Online!')
 );
-
-//sql line for inserting new run ---> INSERT INTO `stats` (`id`, `run_date`, `run_length`, `run_total`) VALUES (NULL, '2021-01-08', '6', '48');
