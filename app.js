@@ -26,41 +26,43 @@ let difference = from_date > today ? from_date - today : today - from_date;
 let datedif = Math.floor(difference / (1000 * 3600 * 24));
 
 //api FETCH all stats
-fetch('https://runcounter-v3.herokuapp.com/stats')
-  .then((response) => response.json())
-  .then(function (json) {
-    // get the value out of the JSON
-    let lastID = json[json.length - 1];
-    let run_length = userMiles.value;
-    let run_total = lastID.run_total;
-    let run_date = Date();
-    let stats = json;
-    let getStats = function (stats) {
-      console.log(stats);
-    };
-    getStats(stats);
-  });
+// fetch('http://runcounter-v3.herokuapp.com/stats')
+//   .then((response) => response.json())
+//   .then(function (json) {
+//     // get the value out of the JSON
+//     let lastID = json[json.length - 1];
+//     let run_length = userMiles.value;
+//     let runTotal = parseFloat(json[0]['SUM(run_length)']).toFixed(2);
+//     console.log(runTotal);
+//     let run_date = Date();
+//     let stats = json;
+//     let getStats = function (stats) {
+//       console.log(stats);
+//     };
+//     getStats(stats);
+//   });
 
-//api FETCH run_total
-fetch('https://runcounter-v3.herokuapp.com/stats/run_total')
+// api FETCH run_total
+fetch('http://runcounter-v3.herokuapp.com/stats/run_total')
   .then((response) => response.json())
   .then(function (json) {
     // get the value out of the JSON
-    let runTotal = json[0];
+    let runTotal = json[0]['SUM(run_length)'];
+    console.log(runTotal);
     //push stats into DOM
     //set total
     let setTotal = function (runTotal) {
       bigTotal.innerHTML = runTotal;
     };
-    setTotal(runTotal.run_total);
+    setTotal(runTotal);
     //set milesRemaining
     let setMilesRemaining = function (runTotal) {
       milesRemaining.innerHTML = 2000 - runTotal;
     };
-    setMilesRemaining(runTotal.run_total);
+    setMilesRemaining(runTotal);
     //set reqDailyAvg
     let setReqDailyAvg = function (runTotal, datedif) {
-      let reqDaily = (2000 - runTotal.run_total) / datedif;
+      let reqDaily = (2000 - runTotal) / datedif;
       let roundDown = reqDaily.toFixed(2);
       reqDailyAvg.innerHTML = roundDown;
     };
@@ -85,7 +87,7 @@ let dateString = year + '-' + month + '-' + day;
 const newRun = function () {
   let run_date = dateString;
   let run_length = parseFloat(lastRun.innerHTML);
-  fetch('https://runcounter-v3.herokuapp.com/stats', {
+  fetch('http://runcounter-v3.herokuapp.com/stats', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -14,6 +14,14 @@ app.use(cors());
 if (process.env.JAWSDB_URL) {
   var db = mysql.createConnection(process.env.JAWSDB_URL);
 }
+//or local connection
+// var db = mysql.createConnection({
+//     host: dbHost,
+//     user: dbUser,
+//     password: dbPassword,
+//     database: dbJaws,
+//     port: (dbPort || 5000)
+// });
 
 app.use(
   express.urlencoded({
