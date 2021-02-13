@@ -10,7 +10,6 @@ const dbJaws = process.env.dbJaws;
 const dbPort = process.env.dbPort;
 const PORT = process.env.PORT;
 
-app.use(cors());
 if (process.env.JAWSDB_URL) {
   var db = mysql.createConnection(process.env.JAWSDB_URL);
 }
@@ -30,19 +29,29 @@ app.use(
 );
 app.use(express.json());
 
+app.use(cors());
+
+var corsOptions = {
+  origin: 'http://patrickvolker.com',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
+
 db.connect((err) => {
   if (err) {
     throw err;
   }
   console.log('MySQL connected!');
-});
-
-app.get('/stats', (req, res) => {
-  const sql = 'SELECT * FROM `stats`';
-  db.query(sql, (err, result) => {
-    if (err) throw 'Something bad happened...sorry...';
-    res.send(result);
-  });
 });
 
 app.get('/stats/run_total', (req, res) => {
@@ -73,3 +82,5 @@ app.post('/stats', (req, res) => {
 app.listen(process.env.PORT || process.env.dbPort, () =>
   console.log('Online!')
 );
+
+//INSERT INTO `opsm2s45yqnsyksc`.`stats` (`id`, `run_date`, `run_length`) VALUES ('82', '2021-02-07', '6.1');
