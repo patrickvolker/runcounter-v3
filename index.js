@@ -25,24 +25,21 @@ if (process.env.JAWSDB_URL) {
 app.use(
   express.urlencoded({
     extended: true,
-  })
+  }),
 );
 app.use(express.json());
 
-app.use(cors());
+app.options('*', function (req, res) {
+  res.sendStatus(200);
+});
 
-var corsOptions = {
-  origin: 'http://patrickvolker.com',
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
+app.use(cors);
 
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin: *');
   res.header(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    'Origin, X-Requested-With, Content-Type, Accept',
   );
   next();
 });
@@ -80,7 +77,5 @@ app.post('/stats', (req, res) => {
 });
 
 app.listen(process.env.PORT || process.env.dbPort, () =>
-  console.log('Online!')
+  console.log('Online!'),
 );
-
-//INSERT INTO `opsm2s45yqnsyksc`.`stats` (`id`, `run_date`, `run_length`) VALUES ('82', '2021-02-07', '6.1');

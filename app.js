@@ -25,22 +25,22 @@ let from_date = new Date('2021/12/31');
 let difference = from_date > today ? from_date - today : today - from_date;
 let datedif = Math.floor(difference / (1000 * 3600 * 24));
 
-//api FETCH all stats
-// fetch('http://runcounter-v3.herokuapp.com/stats')
-//   .then((response) => response.json())
-//   .then(function (json) {
-//     // get the value out of the JSON
-//     let lastID = json[json.length - 1];
-//     let run_length = userMiles.value;
-//     let runTotal = parseFloat(json[0]['SUM(run_length)']).toFixed(2);
-//     console.log(runTotal);
-//     let run_date = Date();
-//     let stats = json;
-//     let getStats = function (stats) {
-//       console.log(stats);
-//     };
-//     getStats(stats);
-//   });
+// api FETCH all stats
+fetch('http://runcounter-v3.herokuapp.com/stats')
+  .then((response) => response.json())
+  .then(function (json) {
+    // get the value out of the JSON
+    let lastID = json[json.length - 1];
+    let run_length = userMiles.value;
+    let runTotal = parseFloat(json[0]['SUM(run_length)']).toFixed(2);
+    console.log(runTotal);
+    let run_date = Date();
+    let stats = json;
+    let getStats = function (stats) {
+      console.log(stats);
+    };
+    getStats(stats);
+  });
 
 // api FETCH run_total
 fetch('http://runcounter-v3.herokuapp.com/stats/run_total')
