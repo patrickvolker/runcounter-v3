@@ -26,7 +26,7 @@ let difference = from_date > today ? from_date - today : today - from_date;
 let datedif = Math.floor(difference / (1000 * 3600 * 24));
 
 // api FETCH all stats
-fetch('http://runcounter-v3.herokuapp.com/stats')
+fetch('https://runcounter-v3.herokuapp.com/stats')
   .then((response) => response.json())
   .then(function (json) {
     // get the value out of the JSON
@@ -43,7 +43,7 @@ fetch('http://runcounter-v3.herokuapp.com/stats')
   });
 
 // api FETCH run_total
-fetch('http://runcounter-v3.herokuapp.com/stats/run_total')
+fetch('https://runcounter-v3.herokuapp.com/stats/run_total')
   .then((response) => response.json())
   .then(function (json) {
     // get the value out of the JSON
@@ -58,6 +58,7 @@ fetch('http://runcounter-v3.herokuapp.com/stats/run_total')
     //set milesRemaining
     let setMilesRemaining = function (runTotal) {
       milesRemaining.innerHTML = 2000 - runTotal;
+      milesRemainingDiv.classList.remove('hidden');
     };
     setMilesRemaining(runTotal);
     //set reqDailyAvg
@@ -65,6 +66,7 @@ fetch('http://runcounter-v3.herokuapp.com/stats/run_total')
       let reqDaily = (2000 - runTotal) / datedif;
       let roundDown = reqDaily.toFixed(2);
       reqDailyAvg.innerHTML = roundDown;
+      reqDailyAvgDiv.classList.remove('hidden');
     };
     setReqDailyAvg(runTotal, datedif);
     let setPercentage = function (bigTotal) {
@@ -87,7 +89,7 @@ let dateString = year + '-' + month + '-' + day;
 const newRun = function () {
   let run_date = dateString;
   let run_length = parseFloat(lastRun.innerHTML);
-  fetch('http://runcounter-v3.herokuapp.com/stats', {
+  fetch('https://runcounter-v3.herokuapp.com/stats', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -103,10 +105,14 @@ const newRun = function () {
 const updateDisplay = function () {
   icon.className = heartIcon;
   lastRun.innerHTML = userMiles.value;
+  lastRunDiv.classList.remove('hidden');
 };
 
 //button switcher
 submit.addEventListener('click', function () {
+  lastRunDiv.classList.remove('hidden');
+  milesRemainingDiv.classList.remove('hidden');
+  reqDailyAvgDiv.classList.remove('hidden');
   if (userMiles.value == 0) {
     message.innerHTML = 'maybe tomorrow?';
   } else if (userMiles.value >= 1 && userMiles.value <= 5) {
@@ -119,3 +125,15 @@ submit.addEventListener('click', function () {
   newRun();
   updateDisplay();
 });
+
+//countup animation
+// import { CountUp } from './js/countUp.min.js';
+
+// const options = {
+//   duration: 2,
+//   suffix: 'miles',
+// };
+// window.onload = function () {
+//   var countUp = new CountUp('bigTotal', runTotal, options);
+//   countUp.start();
+// };

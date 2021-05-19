@@ -1,0 +1,56 @@
+body {
+  background-color: rgb(4, 18, 34);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  width: -webkit-fill-available;
+}
+
+#bigTotal {
+  font-size: 140px;
+}
+
+.progressEmpty {
+  background-color: grey;
+  width: 100%;
+  height: 25px;
+}
+
+.progressFull {
+  background-color: springgreen;
+  height: 25px;
+}
+
+.userInput {
+  font-size: 2em;
+  width: -webkit-fill-available;
+}
+
+.form-control {
+  width: 70vw;
+  height: 25px;
+  border-radius: 15px;
+  border: none;
+  text-align: right;
+}
+
+.button {
+  color: white;
+  background: transparent;
+  border: solid 1px floralwhite;
+  font-size: large;
+  width: fit-content;
+  padding: 3%;
+  border-radius: 15px;
+  margin: 5%;
+}
+
+.stats {
+  text-align: left;
+  margin-left: 20%;
+  margin-top: 1%;
+}
+
+.hidden {
+  display: none;
+}
