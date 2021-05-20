@@ -13,7 +13,7 @@ const PORT = process.env.PORT;
 if (process.env.JAWSDB_URL) {
   var db = mysql.createConnection(process.env.JAWSDB_URL);
 }
-//or local connection
+// or local connection
 // var db = mysql.createConnection({
 //     host: dbHost,
 //     user: dbUser,
